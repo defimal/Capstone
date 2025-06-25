@@ -1,0 +1,15 @@
+/Users/user/Capstone/csharp/loader/obj/Debug/net9.0/loader.GeneratedMSBuildEditorConfig.editorconfig
+/Users/user/Capstone/csharp/loader/obj/Debug/net9.0/loader.AssemblyInfoInputs.cache
+/Users/user/Capstone/csharp/loader/obj/Debug/net9.0/loader.AssemblyInfo.cs
+/Users/user/Capstone/csharp/loader/obj/Debug/net9.0/loader.csproj.CoreCompileInputs.cache
+/Users/user/Capstone/csharp/loader/obj/Debug/net9.0/loader.sourcelink.json
+/Users/user/Capstone/csharp/loader/bin/Debug/net9.0/loader
+/Users/user/Capstone/csharp/loader/bin/Debug/net9.0/loader.deps.json
+/Users/user/Capstone/csharp/loader/bin/Debug/net9.0/loader.runtimeconfig.json
+/Users/user/Capstone/csharp/loader/bin/Debug/net9.0/loader.dll
+/Users/user/Capstone/csharp/loader/bin/Debug/net9.0/loader.pdb
+/Users/user/Capstone/csharp/loader/obj/Debug/net9.0/loader.dll
+/Users/user/Capstone/csharp/loader/obj/Debug/net9.0/refint/loader.dll
+/Users/user/Capstone/csharp/loader/obj/Debug/net9.0/loader.pdb
+/Users/user/Capstone/csharp/loader/obj/Debug/net9.0/loader.genruntimeconfig.cache
+/Users/user/Capstone/csharp/loader/obj/Debug/net9.0/ref/loader.dll
