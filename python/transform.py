@@ -1,29 +1,38 @@
-## importing necessary libraries 
 
 import pandas as pd
 
-df = pd.read_csv("data/raw/test.csv")
+def clean_any_csv(file_path, output_path=None):
+    """
+    Cleans any CSV file by:
+    - Removing duplicates
+    - Stripping whitespace from all string columns
+    - Lowercasing all string columns
 
-## creating a stagging of df to make channges in the files
+    Args:
+        file_path (str): Path to the input CSV file.
+        output_path (str, optional): Path to save the cleaned CSV file. If None, file is not saved.
 
-duplicates = df.duplicated()
+    Returns:
+        pd.DataFrame: The cleaned DataFrame.
+    """
+    # Load the file
+    df = pd.read_csv(file_path)
+    original_count = len(df)
 
-##now i will check the total number of rows
+    # Remove duplicates
+    df = df.drop_duplicates()
 
-print("total number of rows ", duplicates.sum())
+    # Clean all object/string-type columns
+    for col in df.select_dtypes(include=['object']).columns:
+        df[col] = df[col].str.strip().str.lower()
 
-## these cod help us to see the duplicate if any :
-df_duplicates = df[df.duplicated()]
-print(df_duplicates)
-## now wwe drop any duplicates in this file 
-df_no_duplicates = df.drop_duplicates()
+    cleaned_count = len(df)
 
-##so now we mad sure there is no duplicates
+    # Save if path provided
+    if output_path:
+        df.to_csv(output_path, index=False)
 
-## next is to remove all trailing spaces 
+    print(f"File cleaned successfully. Removed {original_count - cleaned_count} duplicate rows.")
+    return df
 
-df = df_no_duplicates.apply(lambda x: x.str.strip() if x.dtype == "object" else x)
-print(df)
-print(df["country"].unique())
-print(df["Country"].value_counts(dropna=False))
-
+clean_any_csv("data/raw/test.csv","data/processed/output.csv")
