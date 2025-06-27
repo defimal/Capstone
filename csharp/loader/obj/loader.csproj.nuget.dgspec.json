@@ -43,6 +43,20 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[9.3.0, )"
+            },
+            "MySqlConnector": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            },
+            "System.Data.SQLite.Core": {
+              "target": "Package",
+              "version": "[1.0.119, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

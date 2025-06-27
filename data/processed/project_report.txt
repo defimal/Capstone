@@ -1,0 +1,24 @@
+📊 PROJECT DATA REPORT
+==================================================
+
+✅ Total Records: 27375
+✅ Columns: id, date, country, store, product
+
+🧾 First 5 Entries:
+    id       date   country        store                                        product
+136950 2022-01-01 Argentina Kaggle Learn              Using LLMs to Improve Your Coding
+136951 2022-01-01 Argentina Kaggle Learn                  Using LLMs to Train More LLMs
+136952 2022-01-01 Argentina Kaggle Learn Using LLMs to Win Friends and Influence People
+136953 2022-01-01 Argentina Kaggle Learn     Using LLMs to Win More Kaggle Competitions
+136954 2022-01-01 Argentina Kaggle Learn                     Using LLMs to Write Better
+
+📈 Numeric Column Summary:
+                  id
+count   27375.000000
+mean   150637.000000
+std      7902.626146
+min    136950.000000
+25%    143793.500000
+50%    150637.000000
+75%    157480.500000
+max    164324.000000

@@ -1,38 +1,39 @@
-
 import pandas as pd
 
-def clean_any_csv(file_path, output_path=None):
-    """
-    Cleans any CSV file by:
-    - Removing duplicates
-    - Stripping whitespace from all string columns
-    - Lowercasing all string columns
+def transform_project_data(input_path='data/raw/test.csv', output_path='data/processed/output.csv'):
+    # Load raw data
+    df = pd.read_csv(input_path)
+    print(df)
+    # Clean column names
+    df.columns = df.columns.str.strip()
 
-    Args:
-        file_path (str): Path to the input CSV file.
-        output_path (str, optional): Path to save the cleaned CSV file. If None, file is not saved.
+    # Strip whitespace from string fields
+    df = df.apply(lambda col: col.str.strip() if col.dtype == 'object' else col)
 
-    Returns:
-        pd.DataFrame: The cleaned DataFrame.
-    """
-    # Load the file
-    df = pd.read_csv(file_path)
-    original_count = len(df)
+    # Flexible Date Column Handling
+    date_col = next((col for col in df.columns if 'date' in col.lower()), None)
+    if date_col:
+        df[date_col] = pd.to_datetime(df[date_col], errors='coerce')
+        df = df[df[date_col].notnull()]
+        df[date_col] = df[date_col].dt.strftime('%Y-%m-%d')
 
-    # Remove duplicates
-    df = df.drop_duplicates()
+    # Standardize Status and filter
+    status_col = next((col for col in df.columns if 'status' in col.lower()), None)
+    if status_col:
+        df[status_col] = df[status_col].str.lower().str.strip()
+        df = df[df[status_col].isin(['thinking'])]  # Only keep rows with 'thinking'
 
-    # Clean all object/string-type columns
-    for col in df.select_dtypes(include=['object']).columns:
-        df[col] = df[col].str.strip().str.lower()
+    # Numeric fields (e.g., Budget, TeamSize)
+    for col in ['Budget', 'TeamSize']:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors='coerce')
+            df = df[df[col].notnull()]
+            df[col] = df[col].astype(int)
 
-    cleaned_count = len(df)
+    # Save to cleaned file
+    df.to_csv(output_path, index=False)
+    print(f"Transformed data saved to {output_path}")
 
-    # Save if path provided
-    if output_path:
-        df.to_csv(output_path, index=False)
-
-    print(f"File cleaned successfully. Removed {original_count - cleaned_count} duplicate rows.")
-    return df
-
-clean_any_csv("data/raw/test.csv","data/processed/output.csv")
+# Run
+if __name__ == "__main__":
+    transform_project_data()
