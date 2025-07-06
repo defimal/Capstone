@@ -93,7 +93,7 @@ class Program
 
     static void InsertIntoDatabase(List<Dictionary<string, string>> records)
     {
-        // ✅ MySQL connection string for localhost (change as needed)
+        //  MySQL connection string for localhost (change as needed)
         string connectionString = "server=localhost;user=root;password=YourPassword123!;database=Capstone;";
 
         using (var conn = new MySqlConnection(connectionString))
@@ -102,7 +102,7 @@ class Program
 
             var columns = new List<string>(records[0].Keys);
 
-            // ✅ Create table if it doesn't exist
+            // Create table if it doesn't exist
             string createTableSql = "CREATE TABLE IF NOT EXISTS Projects (" +
                                     string.Join(", ", columns.ConvertAll(c => $"`{c}` TEXT")) + ");";
 
@@ -111,7 +111,7 @@ class Program
                 cmd.ExecuteNonQuery();
             }
 
-            // ✅ Insert data
+            // Insert data
             foreach (var record in records)
             {
                 string insertSql = $"INSERT INTO Projects ({string.Join(",", columns)}) VALUES ({string.Join(",", columns.ConvertAll(c => "@" + c))});";
